@@ -5,7 +5,7 @@ module.exports = {
 	context: __dirname,
 	devtool: false,
 	entry: {
-		index: ['core-js/stable', 'regenerator-runtime/runtime', './src/index.js']
+		index: ['core-js/stable', 'regenerator-runtime/runtime', './index.js']
 	},
 	module: {
 		rules: [
@@ -54,10 +54,15 @@ module.exports = {
 	},
 	externals: {
 		'@volenday/input-date': 'commonjs2 @volenday/input-date',
-		'cleave.js': 'commonjs2 cleave.js',
 		antd: 'commonjs2 antd',
+		'cleave.js': 'commonjs2 cleave.js',
+		'draft-js': 'commonjs2 draft-js',
+		'draftjs-to-html': 'commonjs2 draftjs-to-html',
+		'html-to-draftjs': 'commonjs2 html-to-draftjs',
 		react: 'commonjs2 react',
-		unidecode: 'commonjs2 unidecode'
+		'react-draft-wysiwyg': 'commonjs2 react-draft-wysiwyg',
+		unidecode: 'commonjs2 unidecode',
+		'validate.js': 'commonjs2 validate.js'
 	},
 	plugins: [
 		new webpack.optimize.AggressiveMergingPlugin(),
