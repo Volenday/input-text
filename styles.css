@@ -21,3 +21,7 @@
     overflow: hidden;
     margin: 20px;
 }
+
+.draft-uppercase {
+    text-transform: uppercase;
+}
