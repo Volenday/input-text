@@ -960,10 +960,10 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@volenday/input-date@^0.1.16":
-  version "0.1.17"
-  resolved "https://registry.yarnpkg.com/@volenday/input-date/-/input-date-0.1.17.tgz#95d0bd6cc3c58cb48024757ffb7ec84cf53a4d7e"
-  integrity sha512-uw/WG9kL+gXcGHW7FG3oRMCy04RVqDB8JadkGYGAJKd/c7gzPiT9pAMfaSDUOzcHAsnUx/qhHMmSqys5VIrFtw==
+"@volenday/input-date@~0.1.18":
+  version "0.1.18"
+  resolved "https://registry.yarnpkg.com/@volenday/input-date/-/input-date-0.1.18.tgz#7aac1266b2021aaaef90fc1eb0fb5572a2793506"
+  integrity sha512-VLhvjwhZGwA5a5PjwaG8+xMSbWc+BfbZVmrykoJrbgG7u+n57OiYRBZ9Yf9sysRmWZPdKmRzLiRxykgRomCcNA==
   dependencies:
     antd "~3.22.2"
     moment-timezone "^0.5.26"
