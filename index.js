@@ -126,7 +126,7 @@ export default class InputText extends Component {
 		};
 
 		const errors = validate({ [id]: value }, constraints);
-		return errors ? errors[id] : [];
+		return validate.isEmpty(value) && !required ? [] : errors ? errors[id] : [];
 	};
 
 	renderInputText() {
