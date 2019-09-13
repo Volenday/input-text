@@ -176,7 +176,7 @@ export default class InputText extends Component {
 					}}
 					options={{ delimiters, blocks }}
 					placeholder={placeholder || label || id}
-					style={newStyles}
+					style={{ width: '100%', ...newStyles }}
 					value={this.handleFontCase(uppercase, this.state.localValue) || ''}
 				/>
 			);
@@ -201,7 +201,7 @@ export default class InputText extends Component {
 					return true;
 				}}
 				placeholder={placeholder || label || id}
-				style={styles}
+				style={{ width: '100%', ...styles }}
 				type="text"
 				value={this.handleFontCase(uppercase, localValue)}
 			/>
