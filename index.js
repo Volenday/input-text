@@ -136,6 +136,7 @@ export default class InputText extends Component {
 			format = [],
 			id,
 			label = '',
+			onBlur,
 			onChange,
 			placeholder = '',
 			styles = {},
@@ -161,6 +162,7 @@ export default class InputText extends Component {
 					onBlur={e => {
 						if (e.target.rawValue != value) onChange(id, this.handleFontCase(uppercase, e.target.rawValue));
 						this.setState({ isFocused: false });
+						if (onBlur) onBlur(e);
 					}}
 					onChange={e => this.onChange(e.target.rawValue)}
 					onFocus={() => this.setState({ isFocused: true })}
@@ -187,6 +189,7 @@ export default class InputText extends Component {
 				onBlur={e => {
 					if (e.target.value != value) onChange(id, this.handleFontCase(uppercase, e.target.value));
 					this.setState({ isFocused: false });
+					if (onBlur) onBlur(e);
 				}}
 				onChange={e => this.onChange(e.target.value)}
 				onFocus={() => this.setState({ isFocused: true })}
@@ -207,6 +210,7 @@ export default class InputText extends Component {
 			disabled = false,
 			id,
 			label = '',
+			onBlur,
 			onChange,
 			placeholder = '',
 			styles = {},
@@ -228,6 +232,7 @@ export default class InputText extends Component {
 				onBlur={e => {
 					if (e.target.value != value) onChange(id, this.handleFontCase(uppercase, e.target.value));
 					this.setState({ isFocused: false });
+					if (onBlur) onBlur(e);
 				}}
 				onChange={e => this.onChange(e.target.value)}
 				onFocus={() => this.setState({ isFocused: true })}
@@ -243,7 +248,7 @@ export default class InputText extends Component {
 	}
 
 	renderRichText() {
-		const { id, action, disabled = false, onChange, uppercase = false, value = '' } = this.props;
+		const { id, action, disabled = false, onBlur, onChange, uppercase = false, value = '' } = this.props;
 		const { localValue, editorState } = this.state;
 		const config = { image: { uploadCallback: this.uploadCallback, previewImage: true } };
 
@@ -254,6 +259,7 @@ export default class InputText extends Component {
 				onBlur={e => {
 					if (localValue != value) onChange(id, this.handleFontCase(uppercase, localValue));
 					this.setState({ isFocused: false });
+					if (onBlur) onBlur(e);
 				}}
 				onEditorStateChange={editorState => {
 					this.setState({
