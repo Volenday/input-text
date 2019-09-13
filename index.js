@@ -170,7 +170,7 @@ export default class InputText extends Component {
 					onKeyPress={e => {
 						if (e.key === 'Enter') {
 							onChange(id, this.handleFontCase(uppercase, e.target.rawValue));
-							if (onPressEnter) onPressEnter();
+							if (onPressEnter) onPressEnter(e);
 							return true;
 						}
 					}}
@@ -197,7 +197,7 @@ export default class InputText extends Component {
 				onFocus={() => this.setState({ isFocused: true })}
 				onPressEnter={e => {
 					onChange(id, this.handleFontCase(uppercase, e.target.value));
-					if (onPressEnter) onPressEnter();
+					if (onPressEnter) onPressEnter(e);
 					return true;
 				}}
 				placeholder={placeholder || label || id}
@@ -242,7 +242,7 @@ export default class InputText extends Component {
 				onFocus={() => this.setState({ isFocused: true })}
 				onPressEnter={e => {
 					onChange(id, this.handleFontCase(uppercase, e.target.value));
-					if (onPressEnter) onPressEnter();
+					if (onPressEnter) onPressEnter(e);
 					return true;
 				}}
 				placeholder={placeholder || label || id}
