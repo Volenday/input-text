@@ -138,6 +138,7 @@ export default class InputText extends Component {
 			label = '',
 			onBlur,
 			onChange,
+			onPressEnter,
 			placeholder = '',
 			styles = {},
 			uppercase = false,
@@ -169,6 +170,7 @@ export default class InputText extends Component {
 					onKeyPress={e => {
 						if (e.key === 'Enter') {
 							onChange(id, this.handleFontCase(uppercase, e.target.rawValue));
+							if (onPressEnter) onPressEnter();
 							return true;
 						}
 					}}
@@ -195,6 +197,7 @@ export default class InputText extends Component {
 				onFocus={() => this.setState({ isFocused: true })}
 				onPressEnter={e => {
 					onChange(id, this.handleFontCase(uppercase, e.target.value));
+					if (onPressEnter) onPressEnter();
 					return true;
 				}}
 				placeholder={placeholder || label || id}
@@ -212,6 +215,7 @@ export default class InputText extends Component {
 			label = '',
 			onBlur,
 			onChange,
+			onPressEnter,
 			placeholder = '',
 			styles = {},
 			uppercase = false,
@@ -238,10 +242,11 @@ export default class InputText extends Component {
 				onFocus={() => this.setState({ isFocused: true })}
 				onPressEnter={e => {
 					onChange(id, this.handleFontCase(uppercase, e.target.value));
+					if (onPressEnter) onPressEnter();
 					return true;
 				}}
 				placeholder={placeholder || label || id}
-				style={newStyles}
+				style={{ width: '100%', ...newStyles }}
 				value={this.handleFontCase(uppercase, this.state.localValue) || ''}
 			/>
 		);
