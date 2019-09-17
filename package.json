@@ -1,6 +1,6 @@
 {
 	"name": "@volenday/input-text",
-	"version": "0.1.9",
+	"version": "0.1.10",
 	"license": "UNLICENSED",
 	"scripts": {
 		"dev": "webpack --progress --watch",
@@ -9,8 +9,7 @@
 	},
 	"main": "dist/index.min.js",
 	"peerDependencies": {
-		"@volenday/input-date": "^0.1.16",
-		"antd": "^3.22.1",
+		"antd": "~3.23.3",
 		"cleave.js": "^1.5.3",
 		"draft-js": "^0.11.0",
 		"draftjs-to-html": "^0.8.4",
@@ -21,8 +20,7 @@
 		"validate.js": "^0.13.1"
 	},
 	"dependencies": {
-		"@volenday/input-date": "~0.1.22",
-		"antd": "~3.23.2",
+		"antd": "~3.23.3",
 		"cleave.js": "^1.5.3",
 		"draft-js": "^0.11.0",
 		"draftjs-to-html": "^0.8.4",

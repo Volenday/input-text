@@ -53,7 +53,6 @@ module.exports = {
 		libraryTarget: 'commonjs2'
 	},
 	externals: {
-		'@volenday/input-date': 'commonjs2 @volenday/input-date',
 		antd: 'commonjs2 antd',
 		'cleave.js': 'commonjs2 cleave.js',
 		'draft-js': 'commonjs2 draft-js',

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import unidecode from 'unidecode';
 import Cleave from 'cleave.js/react';
-import InputDate from '@volenday/input-date';
 import validate from 'validate.js';
-import { Button, Form, Input, Popover } from 'antd';
+import { Form, Input } from 'antd';
 
 import './styles.css';
 
@@ -16,8 +15,6 @@ import htmlToDraft from 'html-to-draftjs';
 export default class InputText extends Component {
 	state = {
 		errors: [],
-		hasChange: false,
-		isPopoverVisible: false,
 		action: '',
 		editorState: EditorState.createEmpty()
 	};
@@ -86,7 +83,7 @@ export default class InputText extends Component {
 
 		onChange(id, value);
 		const errors = this.validate(value);
-		await this.setState({ errors, hasChange: action === 'add' ? false : true });
+		await this.setState({ errors });
 		if (onValidate) onValidate(id, errors);
 	};
 
@@ -199,8 +196,8 @@ export default class InputText extends Component {
 	}
 
 	renderRichText() {
-		const { id, action, disabled = false, onBlur = () => {}, onChange, uppercase = false, value = '' } = this.props;
-		const { localValue, editorState } = this.state;
+		const { disabled = false, onBlur = () => {}, uppercase = false } = this.props;
+		const { editorState } = this.state;
 		const config = { image: { uploadCallback: this.uploadCallback, previewImage: true } };
 
 		return (
@@ -210,7 +207,7 @@ export default class InputText extends Component {
 				onBlur={onBlur}
 				onEditorStateChange={editorState => {
 					this.onChange(draftToHtml(convertToRaw(editorState.getCurrentContent())));
-					this.setState({ editorState, hasChange: action === 'add' ? false : true });
+					this.setState({ editorState });
 				}}
 				readOnly={disabled}
 				toolbar={config}
@@ -218,55 +215,9 @@ export default class InputText extends Component {
 		);
 	}
 
-	handlePopoverVisible = visible => {
-		this.setState({ isPopoverVisible: visible });
-	};
-
-	renderPopover = () => {
-		const { isPopoverVisible } = this.state;
-		const { id, label = '', historyTrackValue = '', onHistoryTrackChange } = this.props;
-
-		return (
-			<Popover
-				content={
-					<InputDate
-						id={id}
-						label={label}
-						required={true}
-						withTime={true}
-						withLabel={true}
-						value={historyTrackValue}
-						onChange={onHistoryTrackChange}
-					/>
-				}
-				trigger="click"
-				title="History Track"
-				visible={isPopoverVisible}
-				onVisibleChange={this.handlePopoverVisible}>
-				<span class="float-right">
-					<Button
-						type="link"
-						shape="circle-outline"
-						icon="warning"
-						size="small"
-						style={{ color: '#ffc107' }}
-					/>
-				</span>
-			</Popover>
-		);
-	};
-
 	render() {
-		const { errors, hasChange } = this.state;
-		const {
-			action,
-			historyTrack = false,
-			label = '',
-			multiple,
-			required = false,
-			richText = false,
-			withLabel = false
-		} = this.props;
+		const { errors } = this.state;
+		const { label = '', multiple, required = false, richText = false, withLabel = false } = this.props;
 
 		const formItemCommonProps = {
 			colon: false,
@@ -278,7 +229,6 @@ export default class InputText extends Component {
 
 		return (
 			<Form.Item {...formItemCommonProps}>
-				{historyTrack && hasChange && action !== 'add' && this.renderPopover()}
 				{multiple ? (richText ? this.renderRichText() : this.renderTextArea()) : this.renderInputText()}
 			</Form.Item>
 		);
