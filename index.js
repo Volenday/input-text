@@ -14,16 +14,13 @@ import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 
 export default class InputText extends Component {
-	initialState = {
+	state = {
 		errors: [],
 		hasChange: false,
 		isPopoverVisible: false,
-		localValue: '',
-		isFocused: false,
 		action: '',
 		editorState: EditorState.createEmpty()
 	};
-	state = { ...this.initialState, initialState: this.initialState };
 
 	componentDidMount() {
 		const { richText = false } = this.props;
@@ -33,33 +30,11 @@ export default class InputText extends Component {
 		}
 	}
 
-	static getDerivedStateFromProps(nextProps, prevState) {
-		// Set initial localValue
-		if (nextProps.value && !prevState.localValue) {
-			return { ...prevState, localValue: nextProps.value, hasChange: false };
-		}
-
-		// Resets equivalent value
-		if (prevState.localValue !== nextProps.value) {
-			// For Add
-			if (typeof nextProps.value === 'undefined' && !prevState.hasChange && !prevState.isFocused) {
-				return { ...prevState.initialState };
-			}
-
-			// For Edit
-			if (!prevState.isFocused) {
-				return { ...prevState.initialState, localValue: nextProps.value, hasChange: false };
-			}
-		}
-
-		return null;
-	}
-
 	componentDidUpdate(prevProps) {
 		if (this.props.value !== prevProps.value) {
 			const { value = '', richText = false } = this.props;
 			if (richText) {
-				if (value && !this.state.isFocused) {
+				if (value) {
 					const contentBlock = htmlToDraft(value);
 					if (contentBlock) {
 						const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
@@ -93,7 +68,7 @@ export default class InputText extends Component {
 
 	// Upload callback workaround that handles uploading an image in DraftJs
 	uploadCallback(file) {
-		return new Promise((resolve, reject) => {
+		return new Promise(resolve => {
 			var reader = new FileReader();
 
 			reader.onloadend = () => {
@@ -105,14 +80,13 @@ export default class InputText extends Component {
 	}
 
 	onChange = async value => {
-		const { localValue } = this.state;
 		const { action, id, onChange, onValidate, uppercase } = this.props;
 
 		value = this.handleFontCase(uppercase, value);
 
-		if (localValue != '' && value == '') onChange(id, value);
+		onChange(id, value);
 		const errors = this.validate(value);
-		await this.setState({ errors, localValue: value, hasChange: action === 'add' ? false : true, isFocused: true });
+		await this.setState({ errors, hasChange: action === 'add' ? false : true });
 		if (onValidate) onValidate(id, errors);
 	};
 
@@ -130,15 +104,13 @@ export default class InputText extends Component {
 	};
 
 	renderInputText() {
-		const { localValue } = this.state;
 		const {
 			disabled = false,
 			format = [],
 			id,
 			label = '',
-			onBlur,
-			onChange,
-			onPressEnter,
+			onBlur = () => {},
+			onPressEnter = () => {},
 			placeholder = '',
 			styles = {},
 			uppercase = false,
@@ -160,24 +132,17 @@ export default class InputText extends Component {
 					class="ant-input"
 					disabled={disabled}
 					name={id}
-					onBlur={e => {
-						if (e.target.rawValue != value) onChange(id, this.handleFontCase(uppercase, e.target.rawValue));
-						this.setState({ isFocused: false });
-						if (onBlur) onBlur(e);
-					}}
+					onBlur={onBlur}
 					onChange={e => this.onChange(e.target.rawValue)}
-					onFocus={() => this.setState({ isFocused: true })}
 					onKeyPress={e => {
 						if (e.key === 'Enter') {
-							onChange(id, this.handleFontCase(uppercase, e.target.rawValue));
-							if (onPressEnter) onPressEnter(e);
-							return true;
+							onPressEnter(e);
 						}
 					}}
 					options={{ delimiters, blocks }}
 					placeholder={placeholder || label || id}
 					style={{ width: '100%', ...newStyles }}
-					value={this.handleFontCase(uppercase, this.state.localValue) || ''}
+					value={this.handleFontCase(uppercase, value) || ''}
 				/>
 			);
 		}
@@ -188,22 +153,13 @@ export default class InputText extends Component {
 				autoComplete="off"
 				disabled={disabled}
 				name={id}
-				onBlur={e => {
-					if (e.target.value != value) onChange(id, this.handleFontCase(uppercase, e.target.value));
-					this.setState({ isFocused: false });
-					if (onBlur) onBlur(e);
-				}}
+				onBlur={onBlur}
 				onChange={e => this.onChange(e.target.value)}
-				onFocus={() => this.setState({ isFocused: true })}
-				onPressEnter={e => {
-					onChange(id, this.handleFontCase(uppercase, e.target.value));
-					if (onPressEnter) onPressEnter(e);
-					return true;
-				}}
+				onPressEnter={onPressEnter}
 				placeholder={placeholder || label || id}
 				style={{ width: '100%', ...styles }}
 				type="text"
-				value={this.handleFontCase(uppercase, localValue)}
+				value={this.handleFontCase(uppercase, value)}
 			/>
 		);
 	}
@@ -213,9 +169,8 @@ export default class InputText extends Component {
 			disabled = false,
 			id,
 			label = '',
-			onBlur,
-			onChange,
-			onPressEnter,
+			onBlur = () => {},
+			onPressEnter = () => {},
 			placeholder = '',
 			styles = {},
 			uppercase = false,
@@ -233,27 +188,18 @@ export default class InputText extends Component {
 				autosize={{ minRows: 2, maxRows: 6 }}
 				disabled={disabled}
 				name={id}
-				onBlur={e => {
-					if (e.target.value != value) onChange(id, this.handleFontCase(uppercase, e.target.value));
-					this.setState({ isFocused: false });
-					if (onBlur) onBlur(e);
-				}}
+				onBlur={onBlur}
 				onChange={e => this.onChange(e.target.value)}
-				onFocus={() => this.setState({ isFocused: true })}
-				onPressEnter={e => {
-					onChange(id, this.handleFontCase(uppercase, e.target.value));
-					if (onPressEnter) onPressEnter(e);
-					return true;
-				}}
+				onPressEnter={onPressEnter}
 				placeholder={placeholder || label || id}
 				style={{ width: '100%', ...newStyles }}
-				value={this.handleFontCase(uppercase, this.state.localValue) || ''}
+				value={this.handleFontCase(uppercase, value) || ''}
 			/>
 		);
 	}
 
 	renderRichText() {
-		const { id, action, disabled = false, onBlur, onChange, uppercase = false, value = '' } = this.props;
+		const { id, action, disabled = false, onBlur = () => {}, onChange, uppercase = false, value = '' } = this.props;
 		const { localValue, editorState } = this.state;
 		const config = { image: { uploadCallback: this.uploadCallback, previewImage: true } };
 
@@ -261,19 +207,11 @@ export default class InputText extends Component {
 			<Editor
 				editorClassName={uppercase ? 'draft-uppercase' : undefined}
 				editorState={editorState}
-				onBlur={e => {
-					if (localValue != value) onChange(id, this.handleFontCase(uppercase, localValue));
-					this.setState({ isFocused: false });
-					if (onBlur) onBlur(e);
-				}}
+				onBlur={onBlur}
 				onEditorStateChange={editorState => {
-					this.setState({
-						editorState,
-						localValue: draftToHtml(convertToRaw(editorState.getCurrentContent())),
-						hasChange: action === 'add' ? false : true
-					});
+					this.onChange(draftToHtml(convertToRaw(editorState.getCurrentContent())));
+					this.setState({ editorState, hasChange: action === 'add' ? false : true });
 				}}
-				onFocus={() => this.setState({ isFocused: true })}
 				readOnly={disabled}
 				toolbar={config}
 			/>
