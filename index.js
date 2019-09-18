@@ -130,7 +130,7 @@ export default class InputText extends Component {
 					disabled={disabled}
 					name={id}
 					onBlur={onBlur}
-					onChange={e => this.onChange(e, e.target.rawValue)}
+					onChange={e => this.onChange({ target: { name: id, value: e.target.rawValue } }, e.target.rawValue)}
 					onKeyPress={e => {
 						if (e.key === 'Enter') {
 							onPressEnter(e);
@@ -196,7 +196,7 @@ export default class InputText extends Component {
 	}
 
 	renderRichText() {
-		const { disabled = false, onBlur = () => {}, uppercase = false } = this.props;
+		const { disabled = false, id, onBlur = () => {}, uppercase = false } = this.props;
 		const { editorState } = this.state;
 		const config = { image: { uploadCallback: this.uploadCallback, previewImage: true } };
 
@@ -206,7 +206,8 @@ export default class InputText extends Component {
 				editorState={editorState}
 				onBlur={onBlur}
 				onEditorStateChange={e => {
-					this.onChange(e, draftToHtml(convertToRaw(e.getCurrentContent())));
+					const value = draftToHtml(convertToRaw(e.getCurrentContent()));
+					this.onChange({ target: { name: id, value } }, value);
 					this.setState({ editorState: e });
 				}}
 				readOnly={disabled}
