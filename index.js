@@ -76,12 +76,12 @@ export default class InputText extends Component {
 		});
 	}
 
-	onChange = async value => {
-		const { action, id, onChange, onValidate, uppercase } = this.props;
+	onChange = async (e, value) => {
+		const { id, onChange, onValidate, uppercase } = this.props;
 
 		value = this.handleFontCase(uppercase, value);
 
-		onChange(id, value);
+		onChange(e, id, value);
 		const errors = this.validate(value);
 		await this.setState({ errors });
 		if (onValidate) onValidate(id, errors);
@@ -130,7 +130,7 @@ export default class InputText extends Component {
 					disabled={disabled}
 					name={id}
 					onBlur={onBlur}
-					onChange={e => this.onChange(e.target.rawValue)}
+					onChange={e => this.onChange(e, e.target.rawValue)}
 					onKeyPress={e => {
 						if (e.key === 'Enter') {
 							onPressEnter(e);
@@ -151,7 +151,7 @@ export default class InputText extends Component {
 				disabled={disabled}
 				name={id}
 				onBlur={onBlur}
-				onChange={e => this.onChange(e.target.value)}
+				onChange={e => this.onChange(e, e.target.value)}
 				onPressEnter={onPressEnter}
 				placeholder={placeholder || label || id}
 				style={{ width: '100%', ...styles }}
@@ -186,7 +186,7 @@ export default class InputText extends Component {
 				disabled={disabled}
 				name={id}
 				onBlur={onBlur}
-				onChange={e => this.onChange(e.target.value)}
+				onChange={e => this.onChange(e, e.target.value)}
 				onPressEnter={onPressEnter}
 				placeholder={placeholder || label || id}
 				style={{ width: '100%', ...newStyles }}
@@ -205,9 +205,9 @@ export default class InputText extends Component {
 				editorClassName={uppercase ? 'draft-uppercase' : undefined}
 				editorState={editorState}
 				onBlur={onBlur}
-				onEditorStateChange={editorState => {
-					this.onChange(draftToHtml(convertToRaw(editorState.getCurrentContent())));
-					this.setState({ editorState });
+				onEditorStateChange={e => {
+					this.onChange(e, draftToHtml(convertToRaw(e.getCurrentContent())));
+					this.setState({ editorState: e });
 				}}
 				readOnly={disabled}
 				toolbar={config}
