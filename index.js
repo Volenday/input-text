@@ -3,78 +3,17 @@ import unidecode from 'unidecode';
 import Cleave from 'cleave.js/react';
 import validate from 'validate.js';
 import { Form, Input } from 'antd';
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import './styles.css';
 
-// RichText
-import { EditorState, convertToRaw, ContentState, SelectionState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
-
 export default class InputText extends Component {
 	state = {
-		errors: [],
-		action: '',
-		editorState: EditorState.createEmpty()
+		errors: []
 	};
-
-	componentDidMount() {
-		const { richText = false } = this.props;
-
-		if (richText) {
-			require('react-draft-wysiwyg/dist/react-draft-wysiwyg.css');
-		}
-	}
-
-	componentDidUpdate(prevProps) {
-		if (this.props.value !== prevProps.value) {
-			const { value = '', richText = false } = this.props;
-			if (richText) {
-				if (value) {
-					const contentBlock = htmlToDraft(value);
-					if (contentBlock) {
-						const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
-						const editorState = EditorState.createWithContent(contentState);
-						this.setState({ editorState: this.moveEditorSelectionToEnd(editorState) });
-					}
-				}
-			}
-		}
-	}
 
 	handleFontCase = (isUpperCase, value = '') => (isUpperCase ? unidecode(value).toUpperCase() : unidecode(value));
-
-	// Workaround for DraftJs to focus at the last word instead of the first line when focused while typing
-	moveEditorSelectionToEnd = editorState => {
-		const content = editorState.getCurrentContent();
-		const blockMap = content.getBlockMap();
-
-		const key = blockMap.last().getKey();
-		const length = blockMap.last().getLength();
-
-		const selection = new SelectionState({
-			anchorKey: key,
-			anchorOffset: length,
-			focusKey: key,
-			focusOffset: length
-		});
-
-		return EditorState.forceSelection(editorState, selection);
-	};
-
-	// Upload callback workaround that handles uploading an image in DraftJs
-	uploadCallback(file) {
-		return new Promise(resolve => {
-			var reader = new FileReader();
-
-			reader.onloadend = () => {
-				resolve({ data: { link: reader.result } });
-			};
-
-			reader.readAsDataURL(file);
-		});
-	}
 
 	onChange = async (e, value) => {
 		const { id, onChange, onValidate, uppercase } = this.props;
@@ -196,22 +135,18 @@ export default class InputText extends Component {
 	}
 
 	renderRichText() {
-		const { disabled = false, id, onBlur = () => {}, uppercase = false } = this.props;
-		const { editorState } = this.state;
-		const config = { image: { uploadCallback: this.uploadCallback, previewImage: true } };
+		const { disabled = false, id, onBlur = () => {}, value = '' } = this.props;
 
 		return (
-			<Editor
-				editorClassName={uppercase ? 'draft-uppercase' : undefined}
-				editorState={editorState}
-				onBlur={onBlur}
-				onEditorStateChange={e => {
-					const value = draftToHtml(convertToRaw(e.getCurrentContent()));
+			<CKEditor
+				disabled={disabled}
+				data={value}
+				editor={ClassicEditor}
+				onChange={(event, editor) => {
+					const value = editor.getData();
 					this.onChange({ target: { name: id, value } }, value);
-					this.setState({ editorState: e });
 				}}
-				readOnly={disabled}
-				toolbar={config}
+				onBlur={onBlur}
 			/>
 		);
 	}

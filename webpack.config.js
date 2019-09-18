@@ -54,12 +54,10 @@ module.exports = {
 	},
 	externals: {
 		antd: 'commonjs2 antd',
+		'@ckeditor/ckeditor5-react': 'commonjs2 @ckeditor/ckeditor5-react',
+		'@ckeditor/ckeditor5-build-classic': 'commonjs2 @ckeditor/ckeditor5-build-classic',
 		'cleave.js': 'commonjs2 cleave.js',
-		'draft-js': 'commonjs2 draft-js',
-		'draftjs-to-html': 'commonjs2 draftjs-to-html',
-		'html-to-draftjs': 'commonjs2 html-to-draftjs',
 		react: 'commonjs2 react',
-		'react-draft-wysiwyg': 'commonjs2 react-draft-wysiwyg',
 		unidecode: 'commonjs2 unidecode',
 		'validate.js': 'commonjs2 validate.js'
 	},
