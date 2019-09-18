@@ -5,23 +5,3 @@
 .ant-form-item-label label {
     margin: 0px !important
 }
-
-.DraftEditor-editorContainer {
-    border: 1px solid #d9d9d9 !important;
-    padding: 6px;
-    min-height: 346px;
-}
-
-.rdw-image-modal-url-input {
-    border: 1px solid #d9d9d9 !important;
-}
-
-.rdw-image-modal-upload-option-label {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    margin: 20px;
-}
-
-.draft-uppercase {
-    text-transform: uppercase;
-}
