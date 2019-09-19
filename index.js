@@ -13,7 +13,10 @@ export default class InputText extends Component {
 		errors: []
 	};
 
-	handleFontCase = (isUpperCase, value = '') => (isUpperCase ? unidecode(value).toUpperCase() : unidecode(value));
+	handleFontCase = (isUpperCase, value = '') => {
+		if (typeof value != 'string') return '';
+		return isUpperCase ? unidecode(value).toUpperCase() : unidecode(value);
+	};
 
 	onChangeTimeout = null;
 	onChange = async (e, value) => {
