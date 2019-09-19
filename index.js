@@ -15,15 +15,19 @@ export default class InputText extends Component {
 
 	handleFontCase = (isUpperCase, value = '') => (isUpperCase ? unidecode(value).toUpperCase() : unidecode(value));
 
+	onChangeTimeout = null;
 	onChange = async (e, value) => {
 		const { id, onChange, onValidate, uppercase } = this.props;
 
 		value = this.handleFontCase(uppercase, value);
-
 		onChange(e, id, value);
-		const errors = this.validate(value);
-		await this.setState({ errors });
-		if (onValidate) onValidate(id, errors);
+
+		this.onChangeTimeout && clearTimeout(this.onChangeTimeout);
+		this.onChangeTimeout = setTimeout(async () => {
+			const errors = this.validate(value);
+			await this.setState({ errors });
+			if (onValidate) onValidate(id, errors);
+		}, 500);
 	};
 
 	validate = value => {
