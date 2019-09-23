@@ -55,7 +55,6 @@ module.exports = {
 	externals: {
 		antd: 'commonjs2 antd',
 		'@ckeditor/ckeditor5-react': 'commonjs2 @ckeditor/ckeditor5-react',
-		'@ckeditor/ckeditor5-build-classic': 'commonjs2 @ckeditor/ckeditor5-build-classic',
 		'cleave.js': 'commonjs2 cleave.js',
 		react: 'commonjs2 react',
 		unidecode: 'commonjs2 unidecode',
