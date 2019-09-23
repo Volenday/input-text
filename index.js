@@ -4,7 +4,7 @@ import Cleave from 'cleave.js/react';
 import validate from 'validate.js';
 import { Form, Input } from 'antd';
 import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ClassicEditor from '@volenday/ckeditor5-build-classic';
 
 import './styles.css';
 

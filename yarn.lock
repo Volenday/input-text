@@ -1001,12 +1001,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@ckeditor/ckeditor5-build-classic@https://github.com/jeromemmiranda/ckeditor5-build-classic.git":
-  version "12.4.0"
-  resolved "https://github.com/jeromemmiranda/ckeditor5-build-classic.git#9a25c7317fc845fe0571a34a890dc09be3163594"
-  dependencies:
-    "@ckeditor/ckeditor5-upload" "~12.0.0"
-
 "@ckeditor/ckeditor5-core@^12.3.0":
   version "12.3.0"
   resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-core/-/ckeditor5-core-12.3.0.tgz#8b230c86fce19ffd76b46f45fff5f8a50a7f3ef9"
@@ -1076,6 +1070,13 @@
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
+
+"@volenday/ckeditor5-build-classic@~12.4.1":
+  version "12.4.1"
+  resolved "https://registry.yarnpkg.com/@volenday/ckeditor5-build-classic/-/ckeditor5-build-classic-12.4.1.tgz#3a3d12dd307bb3d183098ae1fbdf518fddaa7662"
+  integrity sha512-z8zCHvj5ogkWUXbJaJLhsUkSMbs4ne7pAcyIVIMMbpVVfE6K9ykn1eLGdKb6oe7EZJGSkt45ts2cOJqrCRBNYw==
+  dependencies:
+    "@ckeditor/ckeditor5-upload" "~12.0.0"
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
