@@ -1,6 +1,6 @@
 {
 	"name": "@volenday/input-text",
-	"version": "0.1.29",
+	"version": "0.1.33",
 	"license": "UNLICENSED",
 	"scripts": {
 		"dev": "webpack --progress --watch",
