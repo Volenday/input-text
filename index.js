@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import unidecode from 'unidecode';
 import Cleave from 'cleave.js/react';
-import validate from 'validate.js';
 import { Form, Input } from 'antd';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@volenday/ckeditor5-build-classic';
@@ -9,41 +8,14 @@ import ClassicEditor from '@volenday/ckeditor5-build-classic';
 import './styles.css';
 
 export default class InputText extends Component {
-	state = {
-		errors: []
-	};
-
 	handleFontCase = (isUpperCase, value = '') => {
 		if (typeof value != 'string') return '';
 		return isUpperCase ? unidecode(value).toUpperCase() : unidecode(value);
 	};
 
-	onChangeTimeout = null;
 	onChange = async (e, value) => {
-		const { id, onChange, onValidate, uppercase } = this.props;
-
-		value = this.handleFontCase(uppercase, value);
-		onChange(e, id, value);
-
-		this.onChangeTimeout && clearTimeout(this.onChangeTimeout);
-		this.onChangeTimeout = setTimeout(async () => {
-			const errors = this.validate(value);
-			await this.setState({ errors });
-			if (onValidate) onValidate(id, errors);
-		}, 500);
-	};
-
-	validate = value => {
-		const { id, required = false } = this.props;
-
-		const constraints = {
-			[id]: {
-				presence: { allowEmpty: !required }
-			}
-		};
-
-		const errors = validate({ [id]: value }, constraints);
-		return validate.isEmpty(value) && !required ? [] : errors ? errors[id] : [];
+		const { id, onChange, uppercase } = this.props;
+		onChange(e, id, this.handleFontCase(uppercase, value));
 	};
 
 	renderInputText() {
@@ -159,15 +131,21 @@ export default class InputText extends Component {
 	}
 
 	render() {
-		const { errors } = this.state;
-		const { label = '', multiple, required = false, richText = false, withLabel = false } = this.props;
+		const {
+			error = null,
+			label = '',
+			multiple,
+			required = false,
+			richText = false,
+			withLabel = false
+		} = this.props;
 
 		const formItemCommonProps = {
 			colon: false,
-			help: errors.length != 0 ? errors[0] : '',
+			help: error ? error : '',
 			label: withLabel ? label : false,
 			required,
-			validateStatus: errors.length != 0 ? 'error' : 'success'
+			validateStatus: error ? 'error' : 'success'
 		};
 
 		return (

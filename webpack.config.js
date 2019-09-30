@@ -53,13 +53,13 @@ module.exports = {
 		libraryTarget: 'commonjs2'
 	},
 	externals: {
-		antd: 'commonjs2 antd',
 		'@ckeditor/ckeditor5-react': 'commonjs2 @ckeditor/ckeditor5-react',
 		'@volenday/ckeditor5-build-classic': 'commonjs2 @volenday/ckeditor5-build-classic',
+		antd: 'commonjs2 antd',
 		'cleave.js': 'commonjs2 cleave.js',
 		react: 'commonjs2 react',
-		unidecode: 'commonjs2 unidecode',
-		'validate.js': 'commonjs2 validate.js'
+		'react-dom': 'commonjs2 react-dom',
+		unidecode: 'commonjs2 unidecode'
 	},
 	plugins: [
 		new webpack.optimize.AggressiveMergingPlugin(),
