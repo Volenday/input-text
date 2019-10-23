@@ -1123,10 +1123,10 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@volenday/ckeditor5-build-classic@~12.4.7":
-  version "12.4.7"
-  resolved "https://registry.yarnpkg.com/@volenday/ckeditor5-build-classic/-/ckeditor5-build-classic-12.4.7.tgz#e8aaf66aaf394a8cb178201e75d6a9af4dbfb2f6"
-  integrity sha512-92oQ/8PYVMcjbZ1MEZQdtsTKbMu7sdztlR6hX+7MEUhYexfrcTXBj1DGs/mhxCEYk6Z8lw/A4fmkcetd1vXMZw==
+"@volenday/ckeditor5-build-classic@~12.4.8":
+  version "12.4.8"
+  resolved "https://registry.yarnpkg.com/@volenday/ckeditor5-build-classic/-/ckeditor5-build-classic-12.4.8.tgz#6d88d337e805c8bccee9a31f5b97bd555efc5120"
+  integrity sha512-4AFGuJnCG33XN3lGZuULVVz1XhvHgkzgJzc4IKB8c6o8G0skoaPK6Rgekenzzr+tLL4cJXIlEYRJ0exAXCaekw==
   dependencies:
     "@ckeditor/ckeditor5-font" "^11.2.2"
     "@ckeditor/ckeditor5-upload" "~12.0.0"
