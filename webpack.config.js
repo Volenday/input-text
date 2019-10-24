@@ -56,10 +56,10 @@ module.exports = {
 		'@ckeditor/ckeditor5-react': 'commonjs2 @ckeditor/ckeditor5-react',
 		'@volenday/ckeditor5-build-classic': 'commonjs2 @volenday/ckeditor5-build-classic',
 		antd: 'commonjs2 antd',
-		'cleave.js': 'commonjs2 cleave.js',
 		react: 'commonjs2 react',
 		'react-dom': 'commonjs2 react-dom',
-		unidecode: 'commonjs2 unidecode'
+		unidecode: 'commonjs2 unidecode',
+		'react-input-mask': 'commonjs2 react-input-mask'
 	},
 	plugins: [
 		new webpack.optimize.AggressiveMergingPlugin(),

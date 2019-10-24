@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import unidecode from 'unidecode';
-import Cleave from 'cleave.js/react';
 import { Form, Input } from 'antd';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@volenday/ckeditor5-build-classic';
+import InputMask from 'react-input-mask';
 
 import './styles.css';
 
@@ -38,27 +38,43 @@ export default class InputText extends Component {
 		}
 
 		if (format.length != 0) {
-			let blocks = format.map(d => parseInt(d.characterLength)),
-				delimiters = format.map(d => d.delimiter);
-			delimiters.pop();
+			const mask = format
+				.map((d, i) => {
+					if (d.type == 'alphanumeric') {
+						let padChar = '*';
+						let characters = ''.padStart(d.characterLength, padChar);
+						return `${characters}${format.length - 1 != i ? d.delimiter : ''}`;
+					} else if (d.type == 'numeric') {
+						let padChar = '9';
+						let characters = ''.padStart(d.characterLength, padChar);
+						return `${characters}${format.length - 1 != i ? d.delimiter : ''}`;
+					} else {
+						let padChar = 'a';
+						let characters = ''.padStart(d.characterLength, padChar);
+						return `${characters}${format.length - 1 != i ? d.delimiter : ''}`;
+					}
+				})
+				.join('');
+
 			return (
-				<Cleave
+				<InputMask
+					mask={mask}
+					alwaysShowMask={false}
 					autoComplete="off"
-					class="ant-input"
 					disabled={disabled}
 					name={id}
 					onBlur={onBlur}
-					onChange={e => this.onChange({ target: { name: id, value: e.target.rawValue } }, e.target.rawValue)}
+					onChange={e => this.onChange({ target: { name: id, value: e.target.value } }, e.target.value)}
 					onKeyPress={e => {
 						if (e.key === 'Enter') {
 							onPressEnter(e);
 						}
 					}}
-					options={{ delimiters, blocks }}
 					placeholder={placeholder || label || id}
 					style={{ width: '100%', ...newStyles }}
-					value={this.handleFontCase(uppercase, value) || ''}
-				/>
+					value={this.handleFontCase(uppercase, value) || ''}>
+					{inputProps => <Input {...inputProps} />}
+				</InputMask>
 			);
 		}
 
