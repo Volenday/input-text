@@ -149,6 +149,7 @@ export default class InputText extends Component {
 	render() {
 		const {
 			error = null,
+			extra = null,
 			label = '',
 			multiple,
 			required = false,
@@ -159,7 +160,13 @@ export default class InputText extends Component {
 		const formItemCommonProps = {
 			colon: false,
 			help: error ? error : '',
-			label: withLabel ? label : false,
+			label: withLabel ? (
+				<>
+					<div style={{ float: 'right' }}>{extra}</div> <span class="label">{label}</span>
+				</>
+			) : (
+				false
+			),
 			required,
 			validateStatus: error ? 'error' : 'success'
 		};
