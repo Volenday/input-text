@@ -130,12 +130,13 @@ export default class InputText extends Component {
 	}
 
 	renderRichText() {
-		const { disabled = false, id, onBlur = () => {}, value = '' } = this.props;
+		const { disabled = false, id, onBlur = () => {}, value = '', onFocus = () => {} } = this.props;
 
 		return (
 			<CKEditor
 				disabled={disabled}
 				data={value}
+				onFocus={onFocus}
 				editor={ClassicEditor}
 				onChange={(event, editor) => {
 					const value = editor.getData();
