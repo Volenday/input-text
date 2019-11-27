@@ -116,7 +116,7 @@ export default class InputText extends Component {
 		return (
 			<Input.TextArea
 				autoComplete="off"
-				autosize={{ minRows: 2, maxRows: 6 }}
+				autoSize={{ minRows: 2, maxRows: 6 }}
 				disabled={disabled}
 				name={id}
 				onBlur={onBlur}
