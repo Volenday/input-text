@@ -1,6 +1,6 @@
 {
 	"name": "@volenday/input-text",
-	"version": "0.1.51",
+	"version": "0.1.52",
 	"license": "UNLICENSED",
 	"scripts": {
 		"dev": "webpack --progress --watch",
@@ -9,13 +9,13 @@
 	},
 	"main": "dist/index.min.js",
 	"dependencies": {
-		"@ckeditor/ckeditor5-react": "~1.1.3",
-		"@volenday/ckeditor5-build-classic": "^12.4.8",
-		"antd": "^3.25.3",
-		"react": "^16.12.0",
-		"react-dom": "^16.12.0",
-		"react-input-mask": "^2.0.4",
-		"unidecode": "^0.1.8"
+		"@ckeditor/ckeditor5-react": "~2.0.0",
+		"@volenday/ckeditor5-build-classic": "~12.4.8",
+		"antd": "~3.25.3",
+		"react": "~16.12.0",
+		"react-dom": "~16.12.0",
+		"react-input-mask": "~2.0.4",
+		"unidecode": "~0.1.8"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.7.4",
