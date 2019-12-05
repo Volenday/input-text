@@ -53,13 +53,13 @@ module.exports = {
 		libraryTarget: 'commonjs2'
 	},
 	externals: {
-		'@ckeditor/ckeditor5-react': 'commonjs2 @ckeditor/ckeditor5-react',
-		'@volenday/ckeditor5-build-classic': 'commonjs2 @volenday/ckeditor5-build-classic',
-		antd: 'commonjs2 antd',
-		react: 'commonjs2 react',
-		'react-dom': 'commonjs2 react-dom',
-		unidecode: 'commonjs2 unidecode',
-		'react-input-mask': 'commonjs2 react-input-mask'
+		'@ckeditor/ckeditor5-react': '@ckeditor/ckeditor5-react',
+		'@volenday/ckeditor5-build-classic': '@volenday/ckeditor5-build-classic',
+		antd: 'antd',
+		react: 'react',
+		'react-dom': 'react-dom',
+		unidecode: 'unidecode',
+		'react-input-mask': 'react-input-mask'
 	},
 	plugins: [
 		new webpack.optimize.AggressiveMergingPlugin(),

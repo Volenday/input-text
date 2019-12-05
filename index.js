@@ -80,7 +80,6 @@ export default class InputText extends Component {
 
 		return (
 			<Input
-				allowClear
 				autoComplete="off"
 				disabled={disabled}
 				name={id}
