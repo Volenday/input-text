@@ -1,13 +1,18 @@
 .ant-form-item-label {
-    line-height: 1 !important;
-    width: 100% !important;
+	line-height: 1 !important;
+	width: 100% !important;
 }
 
 .ant-form-item-label label {
-    margin: 0px !important;
-    width: 100% !important;
+	margin: 0px !important;
+	width: 100% !important;
 }
 
 .ant-form-item-label label .label {
-    float: left !important;
+	float: left !important;
+}
+
+.ck.ck-editor__main p {
+	margin-bottom: 0px !important;
+	line-height: 21px !important;
 }
