@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import unidecode from 'unidecode';
 import { Form, Input } from 'antd';
 import CKEditor from '@ckeditor/ckeditor5-react';
@@ -7,35 +7,38 @@ import InputMask from 'react-input-mask';
 
 import './styles.css';
 
-export default class InputText extends Component {
-	handleFontCase = (isUpperCase, value = '') => {
+export default ({
+	disabled = false,
+	error = null,
+	extra = null,
+	format = [],
+	id,
+	label = '',
+	multiple,
+	onBlur = () => {},
+	onFocus = () => {},
+	onPressEnter = () => {},
+	placeholder = '',
+	required = false,
+	richText = false,
+	styles = {},
+	uppercase = false,
+	value = '',
+	withLabel = false
+}) => {
+	const handleFontCase = (isUpperCase, value = '') => {
 		if (typeof value != 'string') return '';
 		return isUpperCase ? unidecode(value).toUpperCase() : unidecode(value);
 	};
 
-	onChange = async (e, value) => {
+	const onChangeInternal = async (e, value) => {
 		const { id, onChange, uppercase } = this.props;
-		onChange(e, id, this.handleFontCase(uppercase, value));
+		onChange(e, id, handleFontCase(uppercase, value));
 	};
 
-	renderInputText() {
-		const {
-			disabled = false,
-			format = [],
-			id,
-			label = '',
-			onBlur = () => {},
-			onPressEnter = () => {},
-			placeholder = '',
-			styles = {},
-			uppercase = false,
-			value = ''
-		} = this.props;
-
+	const renderInputText = () => {
 		let newStyles = { ...styles };
-		if (uppercase) {
-			newStyles = { ...newStyles, textTransform: 'uppercase' };
-		}
+		if (uppercase) newStyles = { ...newStyles, textTransform: 'uppercase' };
 
 		if (format.length != 0) {
 			const mask = format
@@ -64,7 +67,7 @@ export default class InputText extends Component {
 					disabled={disabled}
 					name={id}
 					onBlur={onBlur}
-					onChange={e => this.onChange({ target: { name: id, value: e.target.value } }, e.target.value)}
+					onChange={e => onChangeInternal({ target: { name: id, value: e.target.value } }, e.target.value)}
 					onKeyPress={e => {
 						if (e.key === 'Enter') {
 							onPressEnter(e);
@@ -72,7 +75,7 @@ export default class InputText extends Component {
 					}}
 					placeholder={placeholder || label || id}
 					style={{ width: '100%', ...newStyles }}
-					value={this.handleFontCase(uppercase, value) || ''}>
+					value={handleFontCase(uppercase, value) || ''}>
 					{inputProps => <Input {...inputProps} />}
 				</InputMask>
 			);
@@ -84,33 +87,19 @@ export default class InputText extends Component {
 				disabled={disabled}
 				name={id}
 				onBlur={onBlur}
-				onChange={e => this.onChange(e, e.target.value)}
+				onChange={e => onChangeInternal(e, e.target.value)}
 				onPressEnter={onPressEnter}
 				placeholder={placeholder || label || id}
 				style={{ width: '100%', ...styles }}
 				type="text"
-				value={this.handleFontCase(uppercase, value)}
+				value={handleFontCase(uppercase, value)}
 			/>
 		);
-	}
+	};
 
-	renderTextArea() {
-		const {
-			disabled = false,
-			id,
-			label = '',
-			onBlur = () => {},
-			onPressEnter = () => {},
-			placeholder = '',
-			styles = {},
-			uppercase = false,
-			value = ''
-		} = this.props;
-
+	const renderTextArea = () => {
 		let newStyles = { ...styles };
-		if (uppercase) {
-			newStyles = { ...newStyles, textTransform: 'uppercase' };
-		}
+		if (uppercase) newStyles = { ...newStyles, textTransform: 'uppercase' };
 
 		return (
 			<Input.TextArea
@@ -119,18 +108,16 @@ export default class InputText extends Component {
 				disabled={disabled}
 				name={id}
 				onBlur={onBlur}
-				onChange={e => this.onChange(e, e.target.value)}
+				onChange={e => onChangeInternal(e, e.target.value)}
 				onPressEnter={onPressEnter}
 				placeholder={placeholder || label || id}
 				style={{ width: '100%', ...newStyles }}
-				value={this.handleFontCase(uppercase, value) || ''}
+				value={handleFontCase(uppercase, value) || ''}
 			/>
 		);
-	}
+	};
 
-	renderRichText() {
-		const { disabled = false, id, onBlur = () => {}, value = '', onFocus = () => {} } = this.props;
-
+	const renderRichText = () => {
 		return (
 			<CKEditor
 				disabled={disabled}
@@ -139,42 +126,30 @@ export default class InputText extends Component {
 				editor={ClassicEditor}
 				onChange={(event, editor) => {
 					const value = editor.getData();
-					this.onChange({ target: { name: id, value } }, value);
+					onChangeInternal({ target: { name: id, value } }, value);
 				}}
 				onBlur={onBlur}
 			/>
 		);
-	}
+	};
 
-	render() {
-		const {
-			error = null,
-			extra = null,
-			label = '',
-			multiple,
-			required = false,
-			richText = false,
-			withLabel = false
-		} = this.props;
+	const formItemCommonProps = {
+		colon: false,
+		help: error ? error : '',
+		label: withLabel ? (
+			<>
+				<div style={{ float: 'right' }}>{extra}</div> <span class="label">{label}</span>
+			</>
+		) : (
+			false
+		),
+		required,
+		validateStatus: error ? 'error' : 'success'
+	};
 
-		const formItemCommonProps = {
-			colon: false,
-			help: error ? error : '',
-			label: withLabel ? (
-				<>
-					<div style={{ float: 'right' }}>{extra}</div> <span class="label">{label}</span>
-				</>
-			) : (
-				false
-			),
-			required,
-			validateStatus: error ? 'error' : 'success'
-		};
-
-		return (
-			<Form.Item {...formItemCommonProps}>
-				{multiple ? (richText ? this.renderRichText() : this.renderTextArea()) : this.renderInputText()}
-			</Form.Item>
-		);
-	}
-}
+	return (
+		<Form.Item {...formItemCommonProps}>
+			{multiple ? (richText ? renderRichText() : renderTextArea()) : renderInputText()}
+		</Form.Item>
+	);
+};
