@@ -1,6 +1,6 @@
 {
 	"name": "@volenday/input-text",
-	"version": "2.0.2",
+	"version": "2.0.3",
 	"main": "dist/index.min.js",
 	"author": "Volenday <developers@volenday.com>",
 	"license": "MIT",
@@ -11,9 +11,8 @@
 		"prepublishOnly": "webpack --progress -p"
 	},
 	"dependencies": {
-		"@ckeditor/ckeditor5-react": "^2.1.0",
-		"@volenday/ckeditor5-build-classic": "~12.4.8",
-		"antd": "^4.1.1",
+		"@tinymce/tinymce-react": "^3.5.0",
+		"antd": "~3.26.15",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-input-mask": "~2.0.4",

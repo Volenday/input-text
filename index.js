@@ -1,9 +1,8 @@
 import React from 'react';
 import unidecode from 'unidecode';
 import { Form, Input } from 'antd';
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@volenday/ckeditor5-build-classic';
 import InputMask from 'react-input-mask';
+import { Editor } from '@tinymce/tinymce-react';
 
 import './styles.css';
 
@@ -16,6 +15,7 @@ export default ({
 	label = '',
 	multiple,
 	onBlur = () => {},
+	onChange = () => {},
 	onFocus = () => {},
 	onPressEnter = () => {},
 	placeholder = '',
@@ -31,10 +31,7 @@ export default ({
 		return isUpperCase ? unidecode(value).toUpperCase() : unidecode(value);
 	};
 
-	const onChangeInternal = async (e, value) => {
-		const { id, onChange, uppercase } = this.props;
-		onChange(e, id, handleFontCase(uppercase, value));
-	};
+	const onChangeInternal = async (e, value) => onChange(e, id, handleFontCase(uppercase, value));
 
 	const renderInputText = () => {
 		let newStyles = { ...styles };
@@ -68,6 +65,7 @@ export default ({
 					name={id}
 					onBlur={onBlur}
 					onChange={e => onChangeInternal({ target: { name: id, value: e.target.value } }, e.target.value)}
+					onFocus={onFocus}
 					onKeyPress={e => {
 						if (e.key === 'Enter') {
 							onPressEnter(e);
@@ -88,6 +86,7 @@ export default ({
 				name={id}
 				onBlur={onBlur}
 				onChange={e => onChangeInternal(e, e.target.value)}
+				onFocus={onFocus}
 				onPressEnter={onPressEnter}
 				placeholder={placeholder || label || id}
 				style={{ width: '100%', ...styles }}
@@ -109,6 +108,7 @@ export default ({
 				name={id}
 				onBlur={onBlur}
 				onChange={e => onChangeInternal(e, e.target.value)}
+				onFocus={onFocus}
 				onPressEnter={onPressEnter}
 				placeholder={placeholder || label || id}
 				style={{ width: '100%', ...newStyles }}
@@ -119,16 +119,32 @@ export default ({
 
 	const renderRichText = () => {
 		return (
-			<CKEditor
+			<Editor
+				apiKey="ivu5up7uakmp0q5juv2c29ncqug7wavbo30walskhag8oz6p"
 				disabled={disabled}
-				data={value}
-				onFocus={onFocus}
-				editor={ClassicEditor}
-				onChange={(event, editor) => {
-					const value = editor.getData();
-					onChangeInternal({ target: { name: id, value } }, value);
+				init={{
+					plugins:
+						'preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
+					menubar: 'file edit view insert format tools table',
+					toolbar:
+						'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+					toolbar_sticky: true,
+					autosave_ask_before_unload: true,
+					autosave_interval: '30s',
+					autosave_prefix: '{path}{query}-{id}-',
+					autosave_restore_when_empty: false,
+					autosave_retention: '2m',
+					image_advtab: true,
+					content_css: '//www.tiny.cloud/css/codepen.min.css',
+					importcss_append: true,
+					height: 300,
+					image_caption: true,
+					quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+					toolbar_mode: 'sliding',
+					contextmenu: 'link image imagetools table'
 				}}
-				onBlur={onBlur}
+				onEditorChange={e => onChangeInternal({ target: { name: id, value: e } }, e)}
+				value={value}
 			/>
 		);
 	};
