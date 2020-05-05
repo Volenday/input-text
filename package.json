@@ -1,6 +1,6 @@
 {
 	"name": "@volenday/input-text",
-	"version": "2.0.3",
+	"version": "2.0.4",
 	"main": "dist/index.min.js",
 	"author": "Volenday <developers@volenday.com>",
 	"license": "MIT",
@@ -10,9 +10,9 @@
 		"build": "webpack --progress -p",
 		"prepublishOnly": "webpack --progress -p"
 	},
-	"dependencies": {
+	"peerDependencies": {
 		"@tinymce/tinymce-react": "^3.5.0",
-		"antd": "~3.26.15",
+		"antd": "~3.26.16",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-input-mask": "~2.0.4",
@@ -41,15 +41,10 @@
 		"@babel/preset-react": "^7.9.4",
 		"@babel/runtime": "^7.9.2",
 		"babel-loader": "^8.1.0",
-		"babel-plugin-react-html-attrs": "^2.1.0",
+		"babel-plugin-react-html-attrs": "^3.0.4",
 		"core-js": "^3.6.4",
 		"css-loader": "^3.4.2",
 		"file-loader": "^6.0.0",
-		"gulp": "^4.0.2",
-		"gulp-clean-css": "^4.3.0",
-		"gulp-concat": "^2.6.1",
-		"gulp-less": "^4.0.1",
-		"gulp-uglify": "^3.0.2",
 		"node-sass": "^4.13.1",
 		"sass-loader": "^8.0.2",
 		"style-loader": "^1.1.3",

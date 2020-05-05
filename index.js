@@ -1,8 +1,6 @@
 import React from 'react';
 import unidecode from 'unidecode';
 import { Form, Input } from 'antd';
-import InputMask from 'react-input-mask';
-import { Editor } from '@tinymce/tinymce-react';
 
 import './styles.css';
 
@@ -38,6 +36,8 @@ export default ({
 		if (uppercase) newStyles = { ...newStyles, textTransform: 'uppercase' };
 
 		if (format.length != 0) {
+			const InputMask = require('react-input-mask');
+
 			const mask = format
 				.map((d, i) => {
 					if (d.type == 'alphanumeric') {
@@ -118,6 +118,8 @@ export default ({
 	};
 
 	const renderRichText = () => {
+		const { Editor } = require('@tinymce/tinymce-react');
+
 		return (
 			<Editor
 				apiKey="ivu5up7uakmp0q5juv2c29ncqug7wavbo30walskhag8oz6p"
