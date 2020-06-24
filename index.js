@@ -24,6 +24,7 @@ export default ({
 	value = '',
 	withLabel = false
 }) => {
+	console.log('Sample Change');
 	const handleFontCase = (isUpperCase, value = '') => {
 		if (typeof value != 'string') return '';
 		return isUpperCase ? unidecode(value).toUpperCase() : unidecode(value);
