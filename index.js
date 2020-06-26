@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import unidecode from 'unidecode';
 import { Form, Input } from 'antd';
 
 import './styles.css';
 
-export default ({
+const Index = ({
 	disabled = false,
 	error = null,
 	extra = null,
@@ -171,3 +171,5 @@ export default ({
 		</Form.Item>
 	);
 };
+
+export default memo(Index);
