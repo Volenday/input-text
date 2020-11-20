@@ -1,8 +1,10 @@
 import React, { memo } from 'react';
 import unidecode from 'unidecode';
-import { Form, Input } from 'antd';
+import { Form } from 'antd';
 
 import './styles.css';
+
+const browser = typeof process.browser !== 'undefined' ? process.browser : true;
 
 const Index = ({
 	disabled = false,
@@ -79,6 +81,8 @@ const Index = ({
 			);
 		}
 
+		const { Input } = require('antd');
+
 		return (
 			<Input
 				autoComplete="off"
@@ -97,6 +101,8 @@ const Index = ({
 	};
 
 	const renderTextArea = () => {
+		const { Input } = require('antd');
+
 		let newStyles = { ...styles };
 		if (uppercase) newStyles = { ...newStyles, textTransform: 'uppercase' };
 
@@ -118,6 +124,8 @@ const Index = ({
 	};
 
 	const renderRichText = () => {
+		if (!browser) return null;
+
 		const { Editor } = require('@tinymce/tinymce-react');
 
 		return (
