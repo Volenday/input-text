@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import unidecode from 'unidecode';
-import { Form } from 'antd';
+import { Form, Skeleton } from 'antd';
 
 import './styles.css';
 
@@ -124,8 +124,6 @@ const Index = ({
 	};
 
 	const renderRichText = () => {
-		if (!browser) return null;
-
 		const { Editor } = require('@tinymce/tinymce-react');
 
 		return (
@@ -175,7 +173,19 @@ const Index = ({
 
 	return (
 		<Form.Item {...formItemCommonProps}>
-			{multiple ? (richText ? renderRichText() : renderTextArea()) : renderInputText()}
+			{browser ? (
+				multiple ? (
+					richText ? (
+						renderRichText()
+					) : (
+						renderTextArea()
+					)
+				) : (
+					renderInputText()
+				)
+			) : (
+				<Skeleton active paragraph={{ rows: 1, width: '100%' }} title={false} />
+			)}
 		</Form.Item>
 	);
 };
