@@ -34,6 +34,8 @@ const Index = ({
 	const onChangeInternal = async (e, value) => onChange(e, id, handleFontCase(uppercase, value));
 
 	const renderInputText = () => {
+		const { Input } = require('antd');
+
 		let newStyles = { ...styles };
 		if (uppercase) newStyles = { ...newStyles, textTransform: 'uppercase' };
 
@@ -80,8 +82,6 @@ const Index = ({
 				</InputMask>
 			);
 		}
-
-		const { Input } = require('antd');
 
 		return (
 			<Input
