@@ -66,7 +66,11 @@ const Index = ({
 					autoComplete="off"
 					disabled={disabled}
 					name={id}
-					onBlur={onBlur}
+					onBlur={e => {
+						const newValue = e.target.value.trim();
+						onChangeInternal({ target: { name: id, value: newValue } }, newValue);
+						onBlur(e);
+					}}
 					onChange={e => onChangeInternal({ target: { name: id, value: e.target.value } }, e.target.value)}
 					onFocus={onFocus}
 					onKeyPress={e => {
@@ -89,7 +93,11 @@ const Index = ({
 				autoComplete="off"
 				disabled={disabled}
 				name={id}
-				onBlur={onBlur}
+				onBlur={e => {
+					const newValue = e.target.value.trim();
+					onChangeInternal({ target: { name: id, value: newValue } }, newValue);
+					onBlur(e);
+				}}
 				onChange={e => onChangeInternal(e, e.target.value)}
 				onFocus={onFocus}
 				onPressEnter={onPressEnter}
@@ -113,7 +121,11 @@ const Index = ({
 				autoSize={{ minRows: 2, maxRows: 6 }}
 				disabled={disabled}
 				name={id}
-				onBlur={onBlur}
+				onBlur={e => {
+					const newValue = e.target.value.trim();
+					onChangeInternal({ target: { name: id, value: newValue } }, newValue);
+					onBlur(e);
+				}}
 				onChange={e => onChangeInternal(e, e.target.value)}
 				onFocus={onFocus}
 				onPressEnter={onPressEnter}
