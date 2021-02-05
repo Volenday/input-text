@@ -2,9 +2,9 @@ import React, { memo } from 'react';
 import unidecode from 'unidecode';
 import { Form, Skeleton } from 'antd';
 
-import './styles.css';
+const browser = typeof window !== 'undefined' ? true : false;
 
-const browser = typeof process.browser !== 'undefined' ? process.browser : true;
+if (browser) require('./styles.css');
 
 const Index = ({
 	disabled = false,
