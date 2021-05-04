@@ -11,6 +11,7 @@
 		"prepublishOnly": "webpack --progress -p"
 	},
 	"peerDependencies": {
+		"@ant-design/icons": "^4.6.2",
 		"@tinymce/tinymce-react": "^3.5.0",
 		"antd": "^4.8.4",
 		"react": "^17.0.1",
