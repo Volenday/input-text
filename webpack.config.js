@@ -55,6 +55,7 @@ module.exports = {
 		libraryTarget: 'commonjs2'
 	},
 	externals: {
+		'@ant-design/icons': '@ant-design/icons',
 		'@tinymce/tinymce-react': '@tinymce/tinymce-react',
 		antd: 'antd',
 		react: 'react',

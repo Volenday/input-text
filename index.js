@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import unidecode from 'unidecode';
-import { Form, Skeleton } from 'antd';
+import { Form, Skeleton, Tooltip } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
 const browser = typeof window !== 'undefined' ? true : false;
 
@@ -23,6 +24,7 @@ const Index = ({
 	richText = false,
 	styles = {},
 	uppercase = false,
+	toolTip = '',
 	value = '',
 	withLabel = false
 }) => {
@@ -175,7 +177,16 @@ const Index = ({
 		help: error ? error : '',
 		label: withLabel ? (
 			<>
-				<div style={{ float: 'right' }}>{extra}</div> <span class="label">{label}</span>
+				<div style={{ float: 'right' }}>{extra}</div>{' '}
+				<span class="label">
+					{label}{' '}
+					{toolTip && (
+						<Tooltip title={toolTip}>
+							{' '}
+							<QuestionCircleOutlined />
+						</Tooltip>
+					)}
+				</span>
 			</>
 		) : (
 			false
