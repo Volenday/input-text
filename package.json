@@ -1,6 +1,6 @@
 {
 	"name": "@volenday/input-text",
-	"version": "2.3.0",
+	"version": "2.3.1",
 	"main": "dist/index.min.js",
 	"author": "Volenday <developers@volenday.com>",
 	"license": "MIT",
@@ -53,5 +53,6 @@
 		"style-loader": "^2.0.0",
 		"webpack": "^4.44.1",
 		"webpack-cli": "^3.3.12"
-	}
+	},
+	"dependencies": {}
 }
