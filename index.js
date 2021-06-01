@@ -146,25 +146,20 @@ const Index = ({
 				apiKey="ivu5up7uakmp0q5juv2c29ncqug7wavbo30walskhag8oz6p"
 				disabled={disabled}
 				init={{
+					browser_spellcheck: true,
 					plugins:
-						'preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
-					menubar: 'file edit view insert format tools table',
+						'preview paste importcss searchreplace autolink directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
+					menubar: false,
 					toolbar:
-						'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl | paste pastetext',
+						'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | removeformat | insertfile image media link | fullscreen',
 					toolbar_sticky: true,
-					autosave_ask_before_unload: true,
-					autosave_interval: '30s',
-					autosave_prefix: '{path}{query}-{id}-',
-					autosave_restore_when_empty: false,
-					autosave_retention: '2m',
 					image_advtab: true,
 					content_css: '//www.tiny.cloud/css/codepen.min.css',
 					importcss_append: true,
 					height: 300,
 					image_caption: true,
-					quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
 					toolbar_mode: 'sliding',
-					contextmenu: 'link image imagetools table'
+					contextmenu: false
 				}}
 				onEditorChange={e => onChangeInternal({ target: { name: id, value: e } }, e)}
 				value={value}
