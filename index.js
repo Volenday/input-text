@@ -148,10 +148,10 @@ const Index = ({
 				init={{
 					browser_spellcheck: true,
 					plugins:
-						'preview paste importcss searchreplace autolink directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
+						'searchreplace autolink directionality fullscreen image link media table hr anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable',
 					menubar: false,
 					toolbar:
-						'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | removeformat | insertfile image media link | fullscreen',
+						'removeformat | undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | insertfile image media link | fullscreen',
 					toolbar_sticky: true,
 					image_advtab: true,
 					content_css: '//www.tiny.cloud/css/codepen.min.css',
