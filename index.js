@@ -23,6 +23,7 @@ const Index = ({
 	required = false,
 	richText = false,
 	styles = {},
+	uploadUrl = null,
 	uppercase = false,
 	toolTip = '',
 	value = '',
@@ -141,26 +142,29 @@ const Index = ({
 	const renderRichText = () => {
 		const { Editor } = require('@tinymce/tinymce-react');
 
+		let initOptions = {
+			browser_spellcheck: true,
+			plugins:
+				'searchreplace autolink directionality fullscreen image link media table hr anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable quickbars',
+			menubar: false,
+			toolbar:
+				'removeformat | undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | insertfile image media link | fullscreen',
+			toolbar_sticky: true,
+			image_advtab: true,
+			content_css: '//www.tiny.cloud/css/codepen.min.css',
+			importcss_append: true,
+			height: 300,
+			image_caption: true,
+			toolbar_mode: 'sliding',
+			contextmenu: false
+		};
+		if (uploadUrl) initOptions = { ...initOptions, images_upload_url: uploadUrl };
+
 		return (
 			<Editor
 				apiKey="ivu5up7uakmp0q5juv2c29ncqug7wavbo30walskhag8oz6p"
 				disabled={disabled}
-				init={{
-					browser_spellcheck: true,
-					plugins:
-						'searchreplace autolink directionality fullscreen image link media table hr anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable quickbars',
-					menubar: false,
-					toolbar:
-						'removeformat | undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | insertfile image media link | fullscreen',
-					toolbar_sticky: true,
-					image_advtab: true,
-					content_css: '//www.tiny.cloud/css/codepen.min.css',
-					importcss_append: true,
-					height: 300,
-					image_caption: true,
-					toolbar_mode: 'sliding',
-					contextmenu: false
-				}}
+				init={initOptions}
 				onEditorChange={e => onChangeInternal({ target: { name: id, value: e } }, e)}
 				value={value}
 			/>
