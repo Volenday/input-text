@@ -27,7 +27,8 @@ const Index = ({
 	uppercase = false,
 	toolTip = '',
 	value = '',
-	withLabel = false
+	withLabel = false,
+	basicView = false
 }) => {
 	const handleFontCase = (isUpperCase, value = '') => {
 		if (typeof value != 'string') return '';
@@ -158,6 +159,17 @@ const Index = ({
 			toolbar_mode: 'sliding',
 			contextmenu: false
 		};
+
+		if (basicView) {
+			initOptions = {
+				browser_spellcheck: true,
+				contextmenu: false,
+				height: 300,
+				menubar: false,
+				toolbar: 'bold italic underline ' + ' bullist numlist outdent | ',
+				content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:8pt }'
+			};
+		}
 		if (uploadUrl) initOptions = { ...initOptions, images_upload_url: uploadUrl };
 
 		return (
