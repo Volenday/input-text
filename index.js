@@ -8,6 +8,7 @@ const browser = typeof window !== 'undefined' ? true : false;
 if (browser) require('./styles.css');
 
 const Index = ({
+	basicView = false,
 	disabled = false,
 	error = null,
 	extra = null,
@@ -158,6 +159,18 @@ const Index = ({
 			toolbar_mode: 'sliding',
 			contextmenu: false
 		};
+
+		if (basicView) {
+			initOptions = {
+				browser_spellcheck: true,
+				contextmenu: false,
+				height: 300,
+				menubar: false,
+				toolbar: 'bold italic underline ' + ' bullist numlist outdent | ',
+				content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:8pt }'
+			};
+		}
+
 		if (uploadUrl) initOptions = { ...initOptions, images_upload_url: uploadUrl };
 
 		return (
