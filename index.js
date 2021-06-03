@@ -8,6 +8,7 @@ const browser = typeof window !== 'undefined' ? true : false;
 if (browser) require('./styles.css');
 
 const Index = ({
+	basicView = false,
 	disabled = false,
 	error = null,
 	extra = null,
@@ -27,8 +28,7 @@ const Index = ({
 	uppercase = false,
 	toolTip = '',
 	value = '',
-	withLabel = false,
-	basicView = false
+	withLabel = false
 }) => {
 	const handleFontCase = (isUpperCase, value = '') => {
 		if (typeof value != 'string') return '';
@@ -170,6 +170,7 @@ const Index = ({
 				content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:8pt }'
 			};
 		}
+
 		if (uploadUrl) initOptions = { ...initOptions, images_upload_url: uploadUrl };
 
 		return (
