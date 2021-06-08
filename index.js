@@ -159,7 +159,7 @@ const Index = ({
 			toolbar_mode: 'sliding',
 			contextmenu: false,
 			entity_encoding: 'raw',
-			verify_html: 'false',
+			verify_html: false,
 			referrer_policy: 'origin'
 		};
 
@@ -167,10 +167,13 @@ const Index = ({
 			initOptions = {
 				browser_spellcheck: true,
 				contextmenu: false,
+				entity_encoding: 'raw',
 				height: 300,
 				menubar: false,
-				toolbar: 'bold italic underline ' + ' bullist numlist outdent | ',
-				content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:8pt }'
+				toolbar: 'removeformat | bold italic underline ' + ' bullist numlist outdent',
+				content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:8pt }',
+				referrer_policy: 'origin',
+				verify_html: false
 			};
 		}
 
