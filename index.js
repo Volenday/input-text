@@ -157,7 +157,10 @@ const Index = ({
 			height: 300,
 			image_caption: true,
 			toolbar_mode: 'sliding',
-			contextmenu: false
+			contextmenu: false,
+			entity_encoding: 'raw',
+			verify_html: 'false',
+			referrer_policy: 'origin'
 		};
 
 		if (basicView) {
