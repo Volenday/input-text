@@ -146,7 +146,7 @@ const Index = ({
 		let initOptions = {
 			browser_spellcheck: true,
 			plugins:
-				'searchreplace autolink directionality fullscreen image link media table hr anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable quickbars',
+				'searchreplace autolink directionality fullscreen image link media table hr anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable quickbars autoresize',
 			menubar: false,
 			toolbar:
 				'removeformat | undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | insertfile image media link | fullscreen',
@@ -160,7 +160,11 @@ const Index = ({
 			contextmenu: false,
 			entity_encoding: 'raw',
 			verify_html: false,
-			referrer_policy: 'origin'
+			referrer_policy: 'origin',
+			autoresize_bottom_margin: 15,
+			autoresize_overflow_padding: 15,
+			min_height: 75,
+			max_height: 700
 		};
 
 		if (basicView) {
