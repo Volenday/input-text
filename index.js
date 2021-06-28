@@ -177,7 +177,9 @@ const Index = ({
 				toolbar: 'removeformat | bold italic underline ' + ' bullist numlist outdent',
 				content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:8pt }',
 				referrer_policy: 'origin',
-				verify_html: false
+				verify_html: false,
+				plugins: 'autoresize',
+				min_height: 75
 			};
 		}
 
