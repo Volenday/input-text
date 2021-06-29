@@ -174,7 +174,7 @@ const Index = ({
 				content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:8pt }',
 				referrer_policy: 'origin',
 				verify_html: false,
-				icons_url: 'https://tinymce.kleandrav.repl.co/icons/small_icon_pack/icons.js',
+				icons_url: 'https://d3t9tvgbdc7c7w.cloudfront.net/production/icons/small_icon_pack/icons.js',
 				icons: 'small_icon_pack'
 			};
 		}
