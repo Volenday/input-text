@@ -174,14 +174,14 @@ const Index = ({
 				entity_encoding: 'raw',
 				min_height: 75,
 				menubar: false,
-				toolbar: 'removeformat | bold italic underline ' + ' bullist numlist outdent',
+				toolbar: 'removeformat | bold italic underline ' + ' bullist numlist link outdent',
 				content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:8pt }',
 				referrer_policy: 'origin',
 				verify_html: false,
 				statusbar: false,
 				icons_url: 'https://d3t9tvgbdc7c7w.cloudfront.net/production/icons/small_icon_pack/icons.js',
 				icons: 'small_icon_pack',
-				plugins: 'autoresize lists'
+				plugins: 'autoresize lists link'
 			};
 		}
 
