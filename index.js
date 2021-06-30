@@ -181,7 +181,7 @@ const Index = ({
 				statusbar: false,
 				icons_url: 'https://d3t9tvgbdc7c7w.cloudfront.net/production/icons/small_icon_pack/icons.js',
 				icons: 'small_icon_pack',
-				plugins: 'autoresize'
+				plugins: 'autoresize lists'
 			};
 		}
 
