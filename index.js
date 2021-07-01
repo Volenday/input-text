@@ -14,6 +14,7 @@ const Index = ({
 	extra = null,
 	format = [],
 	id,
+	inlineError = false,
 	label = '',
 	multiple,
 	onBlur = () => {},
@@ -198,9 +199,8 @@ const Index = ({
 		);
 	};
 
-	const formItemCommonProps = {
+	let formItemCommonProps = {
 		colon: false,
-		help: error ? error : '',
 		label: withLabel ? (
 			<>
 				<div style={{ float: 'right' }}>{extra}</div>{' '}
@@ -220,6 +220,7 @@ const Index = ({
 		required,
 		validateStatus: error ? 'error' : 'success'
 	};
+	if (inlineError) formItemCommonProps = { ...formItemCommonProps, help: error ? error : '' };
 
 	return (
 		<Form.Item {...formItemCommonProps}>
