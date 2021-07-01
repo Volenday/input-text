@@ -14,7 +14,7 @@ const Index = ({
 	extra = null,
 	format = [],
 	id,
-	inlineError = false,
+	inlineError = true,
 	label = '',
 	multiple,
 	onBlur = () => {},
