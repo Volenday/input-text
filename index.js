@@ -159,7 +159,6 @@ const Index = ({
 			image_caption: true,
 			toolbar_mode: 'sliding',
 			contextmenu: false,
-			entity_encoding: 'raw',
 			verify_html: false,
 			referrer_policy: 'origin',
 			statusbar: false,
@@ -172,7 +171,6 @@ const Index = ({
 			initOptions = {
 				browser_spellcheck: true,
 				contextmenu: false,
-				entity_encoding: 'raw',
 				min_height: 75,
 				menubar: false,
 				toolbar: 'removeformat | bold italic underline ' + ' bullist numlist link outdent',
