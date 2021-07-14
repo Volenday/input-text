@@ -176,7 +176,7 @@ const Index = ({
 				min_height: 75,
 				menubar: false,
 				toolbar: 'removeformat | bold italic underline ' + ' bullist numlist link outdent',
-				content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:8pt }',
+				content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:10pt }',
 				referrer_policy: 'origin',
 				verify_html: false,
 				statusbar: false,
