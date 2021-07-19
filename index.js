@@ -147,10 +147,10 @@ const Index = ({
 		let initOptions = {
 			browser_spellcheck: true,
 			plugins:
-				'searchreplace autolink directionality fullscreen image link media table hr anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable quickbars autoresize',
+				'searchreplace autolink directionality fullscreen image link media table hr anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable quickbars autoresize paste',
 			menubar: false,
 			toolbar:
-				'removeformat | undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | insertfile image media link | fullscreen',
+				'removeformat | undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | insertfile image media link | fullscreen | paste',
 			toolbar_sticky: true,
 			image_advtab: true,
 			content_css: '//www.tiny.cloud/css/codepen.min.css',
@@ -164,7 +164,8 @@ const Index = ({
 			statusbar: false,
 			autoresize_bottom_margin: 15,
 			autoresize_overflow_padding: 15,
-			max_height: 700
+			max_height: 700,
+			paste_data_images: true
 		};
 
 		if (basicView) {
