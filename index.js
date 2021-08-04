@@ -192,6 +192,7 @@ const Index = ({
 				apiKey="ivu5up7uakmp0q5juv2c29ncqug7wavbo30walskhag8oz6p"
 				disabled={disabled}
 				init={initOptions}
+				onBlur={onBlur}
 				onEditorChange={e => onChangeInternal({ target: { name: id, value: e } }, e)}
 				value={value}
 			/>
