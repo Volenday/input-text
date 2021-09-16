@@ -8,6 +8,7 @@ const browser = typeof window !== 'undefined' ? true : false;
 if (browser) require('./styles.css');
 
 const Index = ({
+	autoFocus = false,
 	basicView = false,
 	disabled = false,
 	error = null,
@@ -86,7 +87,7 @@ const Index = ({
 					placeholder={placeholder || label || id}
 					style={{ width: '100%', ...newStyles }}
 					value={handleFontCase(uppercase, value) || ''}>
-					{inputProps => <Input {...inputProps} />}
+					{inputProps => <Input {...inputProps} autoFocus={autoFocus} />}
 				</InputMask>
 			);
 		}
@@ -96,6 +97,7 @@ const Index = ({
 		return (
 			<Input
 				autoComplete="off"
+				autoFocus={autoFocus}
 				disabled={disabled}
 				name={id}
 				onBlur={e => {
@@ -123,6 +125,7 @@ const Index = ({
 		return (
 			<Input.TextArea
 				autoComplete="off"
+				autoFocus={autoFocus}
 				autoSize={{ minRows: 2, maxRows: 6 }}
 				disabled={disabled}
 				name={id}
@@ -187,6 +190,8 @@ const Index = ({
 
 		if (uploadUrl) initOptions = { ...initOptions, images_upload_url: uploadUrl };
 
+		if (autoFocus) initOptions = { ...initOptions, auto_focus: true };
+
 		return (
 			<Editor
 				apiKey="ivu5up7uakmp0q5juv2c29ncqug7wavbo30walskhag8oz6p"
@@ -220,7 +225,11 @@ const Index = ({
 		required,
 		validateStatus: error ? 'error' : 'success'
 	};
-	if (inlineError) formItemCommonProps = { ...formItemCommonProps, help: error ? error : '' };
+	if (inlineError)
+		formItemCommonProps = {
+			...formItemCommonProps,
+			help: error ? error : ''
+		};
 
 	return (
 		<Form.Item {...formItemCommonProps}>
