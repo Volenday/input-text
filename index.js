@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import unidecode from 'unidecode';
 import { Form, Skeleton, Tooltip } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
@@ -32,6 +32,14 @@ const Index = ({
 	value = '',
 	withLabel = false
 }) => {
+	const inputRef = useRef(null);
+
+	useEffect(() => {
+		if (autoFocus && inputRef.current) {
+			inputRef.current.focus();
+		}
+	});
+
 	const handleFontCase = (isUpperCase, value = '') => {
 		if (typeof value != 'string') return '';
 		return isUpperCase ? unidecode(value).toUpperCase() : unidecode(value);
@@ -87,7 +95,7 @@ const Index = ({
 					placeholder={placeholder || label || id}
 					style={{ width: '100%', ...newStyles }}
 					value={handleFontCase(uppercase, value) || ''}>
-					{inputProps => <Input {...inputProps} autoFocus={autoFocus} />}
+					{inputProps => <Input {...inputProps} ref={inputRef} />}
 				</InputMask>
 			);
 		}
@@ -97,7 +105,6 @@ const Index = ({
 		return (
 			<Input
 				autoComplete="off"
-				autoFocus={autoFocus}
 				disabled={disabled}
 				name={id}
 				onBlur={e => {
@@ -109,6 +116,7 @@ const Index = ({
 				onFocus={onFocus}
 				onPressEnter={onPressEnter}
 				placeholder={placeholder || label || id}
+				ref={inputRef}
 				style={{ width: '100%', ...styles }}
 				type="text"
 				value={handleFontCase(uppercase, value)}
@@ -125,7 +133,6 @@ const Index = ({
 		return (
 			<Input.TextArea
 				autoComplete="off"
-				autoFocus={autoFocus}
 				autoSize={{ minRows: 2, maxRows: 6 }}
 				disabled={disabled}
 				name={id}
@@ -138,6 +145,7 @@ const Index = ({
 				onFocus={onFocus}
 				onPressEnter={onPressEnter}
 				placeholder={placeholder || label || id}
+				ref={inputRef}
 				style={{ width: '100%', ...newStyles }}
 				value={handleFontCase(uppercase, value) || ''}
 			/>
