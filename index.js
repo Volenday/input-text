@@ -7,36 +7,40 @@ const browser = typeof window !== 'undefined' ? true : false;
 
 if (browser) require('./styles.css');
 
-const Index = ({
-	basicView = false,
-	disabled = false,
-	error = null,
-	extra = null,
-	format = [],
-	id,
-	inlineError = true,
-	label = '',
-	multiple,
-	onBlur = () => {},
-	onChange = () => {},
-	onFocus = () => {},
-	onPressEnter = () => {},
-	placeholder = '',
-	required = false,
-	richText = false,
-	styles = {},
-	uploadUrl = null,
-	uppercase = false,
-	toolTip = '',
-	value = '',
-	withLabel = false
-}) => {
+const Index = props => {
+	const {
+		basicView = false,
+		disabled = false,
+		error = null,
+		extra = null,
+		format = [],
+		id,
+		inlineError = true,
+		label = '',
+		multiple,
+		onBlur = () => {},
+		onChange = () => {},
+		onFocus = () => {},
+		onPressEnter = () => {},
+		placeholder = '',
+		required = false,
+		richText = false,
+		styles = {},
+		uploadUrl = null,
+		uppercase = false,
+		toolTip = '',
+		value = '',
+		withLabel = false,
+		withUnidecode = true
+	} = props;
+
 	const handleFontCase = (isUpperCase, value = '') => {
 		if (typeof value != 'string') return '';
 		return isUpperCase ? unidecode(value).toUpperCase() : unidecode(value);
 	};
 
-	const onChangeInternal = async (e, value) => onChange(e, id, handleFontCase(uppercase, value));
+	const onChangeInternal = async (e, value) =>
+		onChange(e, id, withUnidecode ? handleFontCase(uppercase, value) : value);
 
 	const renderInputText = () => {
 		let newStyles = { ...styles };
@@ -85,7 +89,7 @@ const Index = ({
 					}}
 					placeholder={placeholder || label || id}
 					style={{ width: '100%', ...newStyles }}
-					value={handleFontCase(uppercase, value) || ''}>
+					value={withUnidecode ? handleFontCase(uppercase, value) || '' : value}>
 					{inputProps => <Input {...inputProps} />}
 				</InputMask>
 			);
@@ -109,7 +113,7 @@ const Index = ({
 				placeholder={placeholder || label || id}
 				style={{ width: '100%', ...styles }}
 				type="text"
-				value={handleFontCase(uppercase, value)}
+				value={withUnidecode ? handleFontCase(uppercase, value) || '' : value}
 			/>
 		);
 	};
@@ -136,7 +140,7 @@ const Index = ({
 				onPressEnter={onPressEnter}
 				placeholder={placeholder || label || id}
 				style={{ width: '100%', ...newStyles }}
-				value={handleFontCase(uppercase, value) || ''}
+				value={withUnidecode ? handleFontCase(uppercase, value) || '' : value}
 			/>
 		);
 	};
