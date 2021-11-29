@@ -10,6 +10,7 @@ if (browser) require('./styles.css');
 const Index = props => {
 	const {
 		basicView = false,
+		contentStyle = 'body { font-family:Helvetica,Arial,sans-serif; font-size:10pt }',
 		disabled = false,
 		error = null,
 		extra = null,
@@ -179,7 +180,7 @@ const Index = props => {
 				min_height: 75,
 				menubar: false,
 				toolbar: 'removeformat | bold italic underline ' + ' bullist numlist link outdent',
-				content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:10pt }',
+				content_style: contentStyle,
 				referrer_policy: 'origin',
 				verify_html: false,
 				statusbar: false,
