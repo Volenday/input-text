@@ -152,10 +152,10 @@ const Index = props => {
 		let initOptions = {
 			browser_spellcheck: true,
 			plugins:
-				'searchreplace autolink directionality fullscreen image link media table hr anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable quickbars autoresize',
+				'searchreplace paste autolink directionality fullscreen image link media table hr anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable quickbars autoresize',
 			menubar: false,
 			toolbar:
-				'removeformat | undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | insertfile image media link | fullscreen | paste',
+				'removeformat | undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | insertfile image media link | fullscreen | paste pastetext',
 			toolbar_sticky: true,
 			image_advtab: true,
 			content_css: '//www.tiny.cloud/css/codepen.min.css',
@@ -170,7 +170,8 @@ const Index = props => {
 			autoresize_bottom_margin: 15,
 			autoresize_overflow_padding: 15,
 			max_height: 700,
-			paste_data_images: true
+			paste_data_images: true,
+			paste_as_text: true
 		};
 
 		if (basicView) {
@@ -179,14 +180,15 @@ const Index = props => {
 				contextmenu: false,
 				min_height: 75,
 				menubar: false,
-				toolbar: 'removeformat | bold italic underline ' + ' bullist numlist link outdent',
+				toolbar: 'removeformat | bold italic underline ' + ' bullist numlist link outdent pastetext',
 				content_style: contentStyle,
 				referrer_policy: 'origin',
 				verify_html: false,
 				statusbar: false,
 				icons_url: 'https://d3t9tvgbdc7c7w.cloudfront.net/production/icons/small_icon_pack/icons.js',
 				icons: 'small_icon_pack',
-				plugins: 'autoresize lists link'
+				plugins: 'autoresize lists link paste',
+				paste_as_text: true
 			};
 		}
 
