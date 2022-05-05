@@ -180,7 +180,8 @@ const Index = props => {
 				contextmenu: false,
 				min_height: 75,
 				menubar: false,
-				toolbar: 'removeformat | bold italic underline ' + ' bullist numlist link outdent pastetext',
+				toolbar:
+					'removeformat | bold italic underline strikethrough superscript subscript bullist numlist link outdent pastetext',
 				content_style: contentStyle,
 				referrer_policy: 'origin',
 				verify_html: false,
