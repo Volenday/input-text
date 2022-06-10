@@ -171,7 +171,11 @@ const Index = props => {
 			autoresize_overflow_padding: 15,
 			max_height: 700,
 			paste_data_images: true,
-			paste_as_text: true
+			paste_as_text: true,
+			force_br_newlines: true,
+			force_p_newlines: false,
+			forced_root_block: '',
+			remove_line_breaks: false
 		};
 
 		if (basicView) {
@@ -188,7 +192,11 @@ const Index = props => {
 				icons_url: 'https://d3t9tvgbdc7c7w.cloudfront.net/production/icons/small_icon_pack/icons.js',
 				icons: 'small_icon_pack',
 				plugins: 'autoresize lists link paste',
-				paste_as_text: true
+				paste_as_text: true,
+				force_br_newlines: true,
+				force_p_newlines: false,
+				forced_root_block: '',
+				remove_linebreaks: false
 			};
 		}
 
