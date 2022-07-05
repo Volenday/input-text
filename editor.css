@@ -1,0 +1,7 @@
+.tox-editor-container {
+	padding-top: 0 !important;
+}
+.tox-editor-dock-fadeout {
+	opacity: 1 !important;
+	visibility: visible !important;
+}

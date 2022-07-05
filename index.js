@@ -156,7 +156,6 @@ const Index = props => {
 			menubar: false,
 			toolbar:
 				'removeformat | undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | insertfile image media link | fullscreen | paste pastetext',
-			toolbar_sticky: true,
 			image_advtab: true,
 			content_css: '//www.tiny.cloud/css/codepen.min.css',
 			content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:10pt; margin: 30px 0; }',
