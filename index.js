@@ -172,10 +172,10 @@ const Index = props => {
 			max_height: 700,
 			paste_data_images: true,
 			paste_as_text: true,
-			force_br_newlines: true,
-			force_p_newlines: false,
+			// force_br_newlines: true,
+			force_p_newlines: true,
 			forced_root_block: '',
-			remove_line_breaks: false
+			// remove_line_breaks: false
 		};
 
 		if (basicView) {
@@ -193,10 +193,10 @@ const Index = props => {
 				icons: 'small_icon_pack',
 				plugins: 'autoresize lists link paste',
 				paste_as_text: true,
-				force_br_newlines: true,
-				force_p_newlines: false,
+				// force_br_newlines: true,
+				force_p_newlines: true,
 				forced_root_block: '',
-				remove_linebreaks: false
+				// remove_linebreaks: false
 			};
 		}
 
