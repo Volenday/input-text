@@ -14,6 +14,7 @@ const Index = props => {
 		disabled = false,
 		error = null,
 		extra = null,
+		forcedRootBlock = '',
 		format = [],
 		id,
 		inlineError = true,
@@ -24,6 +25,7 @@ const Index = props => {
 		onFocus = () => {},
 		onPressEnter = () => {},
 		placeholder = '',
+		removeLineBreaks = false,
 		required = false,
 		richText = false,
 		styles = {},
@@ -172,10 +174,8 @@ const Index = props => {
 			max_height: 700,
 			paste_data_images: true,
 			paste_as_text: true,
-			// force_br_newlines: true,
-			force_p_newlines: true,
-			forced_root_block: '',
-			// remove_line_breaks: false
+			forced_root_block: forcedRootBlock,
+			remove_line_breaks: removeLineBreaks
 		};
 
 		if (basicView) {
@@ -193,10 +193,8 @@ const Index = props => {
 				icons: 'small_icon_pack',
 				plugins: 'autoresize lists link paste',
 				paste_as_text: true,
-				// force_br_newlines: true,
-				force_p_newlines: true,
-				forced_root_block: '',
-				// remove_linebreaks: false
+				forced_root_block: forcedRootBlock,
+				remove_line_breaks: removeLineBreaks
 			};
 		}
 
